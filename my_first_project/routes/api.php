@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ChestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('add-teachers', [TeacherController::class, 'adding']);
-Route::put('edit-teachers', [TeacherController::class, 'updating']);
-Route::delete('delete-teachers', [TeacherController::class, 'deleting']);
-Route::get('view-teachers', [TeacherController::class, 'viewing']);
-
-Route::post('add-students', [StudentController::class, 'adding']);
-Route::put('edit-students', [StudentController::class, 'updating']);
-Route::delete('delete-students', [StudentController::class, 'deleting']);
-Route::get('view-students', [StudentController::class, 'viewing']);
+Route::apiResource('user', UserController::class);
+Route::apiResource('program', ProgramController::class);
+Route::apiResource('chest', ChestController::class);

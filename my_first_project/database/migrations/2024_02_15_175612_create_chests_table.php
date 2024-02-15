@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('chests', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('exercise');
+            $table->string('target_muscle');
+            $table->integer('sets');
+            $table->integer('reps');
+            $table->integer('weight');
+            $table->bigInteger('program_id')->unsigned();
+            $table->foreign('program_id')->references('id')->on('programs');
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('chests');
     }
 };
